@@ -1,7 +1,7 @@
-# We have an array of natural numbers, p is the lenght of interval, k is the position after sorting an interval from the biggest to the smallest numbers. k<=p<=lenght of an array
-# Algorithm needs to count the sum of k numbers within all possible intervals among an array. For example T=[7,9,1,5,8,6,2,12] k=4 p=5. First interval: 7,9,1,5,8 sorted from
-# the biggest 9,8,7,5,1 at position 4 -> 5. Second interval 9,1,5,8,6 -> sorted 9,8,6,5,1 at position 4 -> 5. Third 1,5,8,6,2 sorted 8,6,5,2,1 position 4 ->2
-#Last interval 5,8,6,2,12 -> sorted 12,8,6,5,2 position 4 -> 5. Sum=17
+# We have an array of natural numbers, p is the lenght of interval, k is the position after sorting an interval from the biggest to the smallest numbers.
+# k<=p<=lenght of an array. Algorithm needs to count the sum of k numbers within all possible intervals among an array. For example T=[7,9,1,5,8,6,2,12] k=4 p=5.
+# First interval: 7,9,1,5,8 sorted from the biggest 9,8,7,5,1 at position 4 -> 5. Second interval 9,1,5,8,6 -> sorted 9,8,6,5,1 at position 4 -> 5. 
+# Third 1,5,8,6,2 sorted 8,6,5,2,1 position 4 ->2. Last interval 5,8,6,2,12 -> sorted 12,8,6,5,2 position 4 -> 5. Sum=17
 
 
 def ksum(T, k, p):         #solution is creating new array for an interval and using quick_select algorithm to extract number
