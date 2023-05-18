@@ -181,3 +181,128 @@ to aby mieć najmniejszy element). Scalamy wszystkie elementy do najmniejszego. 
 do elementu merge połączenia a następnie "oczyszczamy" oazę którą aktualnie scaliliśmy (czyli po prostu usuwamy z niej wszystkie krawędzie
 przypisując jej pustą tablicę). Ostatnim krokiem jest aktualizacja połączeń za pomocą tablicy merge, ale nie jest to wymagane do zadania.
 Sprawdzamy czy w powstałym grafie każdy wierzchołek jest parzysty. Jeśli tak cykl Eulera istnieje."""
+
+# 2 wersja zadania bez łączenia wierzchołków oaz. Interesuje nas tylko czy liczba krawędzi w wierzchołkach które powinny zostać połączone
+# jest parzysta. Pierwszy krok jest taki sam, w drugim korku odpalamy DFS na grafie oaz i dzielimy go na spójne składowe. Przechodzimy
+# po każdej z nich i zliczamy krawędzie należących do nich elementów - jeśli liczba krawędzi w spójnej składowej jest parzysta
+# mamy cykl Eulera
+
+def Algocja2(G,CITIES):
+    n=len(G)
+    M_COUNT=[0 for _ in range(n)]
+    CIT=["O" for _ in range(n)]
+
+    for i in range(len(CITIES)):
+        CIT[CITIES[i]]="M"
+    m_count=0
+
+    for i in range(n):
+        if CIT[i]=="M":
+            m_count+=1
+        M_COUNT[i]=m_count
+
+    o_quantity=n-len(CITIES)
+    o_count=-1
+    O_NEIGHBOURS=[[] for _ in range(o_quantity)]
+    O=[[] for _ in range(o_quantity)]
+    MERGE=[None for _ in range(o_quantity)]
+    ADDED=[False for _ in range(n)]
+    for i in range(n):
+        if CIT[i]=="O":
+            o_count+=1
+            for j in range(len(G[i])):
+                if CIT[G[i][j]]=="O":
+                    nr_oazy=G[i][j]-M_COUNT[G[i][j]]
+                    O_NEIGHBOURS[o_count].append(nr_oazy)
+        else:
+            if CIT[G[i][0]]=="O" and CIT[G[i][1]]=="O":
+                oaza1=G[i][0]-M_COUNT[G[i][0]]
+                oaza2=G[i][1]-M_COUNT[G[i][1]]
+                O[oaza1].append(oaza2)
+                O[oaza2].append(oaza1)
+            elif CIT[G[i][0]]=="M" and CIT[G[i][1]]=="O":
+                if ADDED[G[i][0]]==False:
+                    count=1
+                    oaza=G[i][1]-M_COUNT[G[i][1]]
+                    miasto=G[i][0]
+                    ADDED[miasto]=True
+                    while CIT[miasto]!="O":
+                        if G[miasto][0]==i:
+                            miasto=G[miasto][1]
+                        else:
+                            miasto=G[miasto][0]
+                        ADDED[miasto]=True
+                        count+=1
+                    for k in range(count):
+                        miasto=miasto-M_COUNT[miasto]
+                        O[oaza].append(miasto)
+                        O[miasto].append(oaza)
+
+
+            elif CIT[G[i][0]]=="O" and CIT[G[i][1]]=="M":
+                if ADDED[G[i][1]]==False:
+                    count=1
+                    oaza=G[i][0]-M_COUNT[G[i][0]]
+                    miasto=G[i][1]
+                    before=i
+                    ADDED[miasto]=True
+                    while CIT[miasto]!="O":
+                        if G[miasto][0]==before:
+                            before=miasto
+                            miasto=G[miasto][1]
+                        else:
+                            before=miasto
+                            miasto=G[miasto][0]
+                        ADDED[miasto]=True
+                        count+=1
+                    miasto=miasto-M_COUNT[miasto]
+                    for k in range(count):
+                        O[oaza].append(miasto)
+                        O[miasto].append(oaza)
+
+
+    MERGE=DFS(O_NEIGHBOURS)
+    for i in range(len(MERGE)):
+        sum=0
+        for j in range(len(MERGE[i])):
+            element=MERGE[i][j]
+            sum+=len(O[element])
+        if sum%2!=0:
+            return False
+    return True
+
+
+    
+
+            
+
+def DFS(G):     
+    n=len(G)    
+    def DFS_Visit(G,u):
+        nonlocal spójne
+        visited[u]=True
+        for i in range(len(G[u])):
+            v=G[u][i]
+            if visited[v]==False:
+                MERGE[spójne].append(v)
+                DFS_Visit(G,v)
+        
+
+    visited=[False for _ in range(n)]
+    MERGE=[]
+    spójne=-1
+
+
+    for i in range(n):
+
+        if visited[i]==False and len(G[i])>0:
+            MERGE.append([])
+            spójne+=1
+            MERGE[spójne].append(i)
+            DFS_Visit(G,i)
+    return MERGE
+
+
+
+                
+print(Algocja2(E,C))
