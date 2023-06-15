@@ -68,3 +68,19 @@ def merge_sort(head):     # Merge sort algorithm.
         if counter==1:
             return new.next
         head=new.next
+        
+        
+        
+def merge_sort(T): # Merge sort array
+    while True:
+        T_wyn2=[]
+        counter=0
+        while len(T)!=0:
+            T1,T=separate(T)
+            T2,T=separate(T)
+            T_wyn=merge(T1,T2)
+            T_wyn2=sklej(T_wyn2,T_wyn)
+            counter+=1
+        if counter==1:
+            return T_wyn
+        T=T_wyn2
