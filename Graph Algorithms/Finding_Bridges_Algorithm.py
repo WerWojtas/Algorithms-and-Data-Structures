@@ -49,3 +49,4 @@ def Mosty(G):     # Algorytm znajdowania mostów za pomocą DFS. Wykonujemy DFS 
 T=[[1,2],[0,2],[0,1,3],[2,4,5],[3,5],[3,4],[7],[6]]
 T=[[1],[2],[3],[]]
 print(Mosty(T))
+
