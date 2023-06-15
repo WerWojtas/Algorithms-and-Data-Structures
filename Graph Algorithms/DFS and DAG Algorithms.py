@@ -1,5 +1,5 @@
 def DFS(G):     # Algorytm DFS przeszukiwanie w głąb. Algorytm idzie tak długo aż będzie to możliwe po kolejnych sąsiadach kolejnych
-    n=len(G)    # wierzchołków (rekurencja).
+    n=len(G)    # wierzchołków (rekurencja). Depth First Search Algorithm.
     def DFS_Visit(G,u):
         nonlocal time
         visited[u]=True
@@ -30,7 +30,7 @@ def DFS(G):     # Algorytm DFS przeszukiwanie w głąb. Algorytm idzie tak dług
 def TOP(G,n):     # Algorytm sortowania topologicznego grafu acyklicznego skierowanego. Algorytm używa DFS, gdy wierzchołek zostanie
     n=len(G)      # "przetworzony" ( nie da się z niego już nigdzie przejść) dopisuje go na koniec listy sortowania. 
     def DFS_Visit(G,u):   # Algorytm można używać przy sortowaniu zadań które muszą zostać wykonane przed innymi lub do szukania
-        nonlocal place,time # ścieżki Hamiltona w grafie skierowanym
+        nonlocal place,time # ścieżki Hamiltona w grafie skierowanym. Directed Acyclic Graph sorting algorithm.
         visited[u]=True
         for i in range(len(G[u])):
             v=G[u][i]
