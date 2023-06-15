@@ -28,5 +28,5 @@ def Bellman_Ford(G,start):    # Algorytm znajdowania najkrótszej ścieżki w gr
 T=[[(1,1),(2,4)],[(2,-2)],[(3,2)],[(4,-3),(8,8)],[(5,4)],[(6,-2)],[(7,1)],[],[(7,1)]]
 print(Bellman_Ford(T,0))
 
-Uses - searching the shortest path in directed graph with negative wages.
+# Uses - searching the shortest path in directed graph with negative wages.
 
