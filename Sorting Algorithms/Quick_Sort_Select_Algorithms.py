@@ -14,3 +14,15 @@ def quicksort(T, first=0, last=0):      # Quick_Sort algorithm
         pi = partition(T, first, last)
         quicksort(T, first, pi-1)
         quicksort(T, pi+1, last)
+        
+        
+def select(A, first, last, position): # Quick_select slgorithm
+    if first == last:
+        return A[first]
+    q = partition(A, first, last)
+    if q == position:
+        return A[q]
+    elif position < q:
+        return select(A, first, q - 1, position)
+    else:
+        return select(A, q + 1, last, position)
