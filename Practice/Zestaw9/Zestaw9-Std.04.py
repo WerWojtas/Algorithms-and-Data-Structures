@@ -7,8 +7,8 @@ from queue import PriorityQueue
 from math import log2 as lg
 
 
-def Iloczyn(G,start,end):
-    n=len(G)
+def Iloczyn(G,start,end):    # Dijkstra z iloczynem zamiast sumy, zazwyczaj zamienia się wszystko na tablicę z logarytmami aby iloczyn
+    n=len(G)                 # nie skończył zbyt szybko pamięci
     
     visited=[False for _ in range(n)]
     parent=[None for _ in range(n)]
