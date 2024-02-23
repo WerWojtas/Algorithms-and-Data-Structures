@@ -3,9 +3,9 @@ wierzchołki w grafie, przez każdy dokładnie raz. W ogólnym grafie znalezieni
 grafie skierowanym.
 """
 
-def TOP(G):
-    n=len(G)
-    def DFS_Visit(G,vertex):
+def TOP(G):           # Algorytm sortuje graf topologicznie, a następnie sprawdza czy z korzenia (pierwszego elementu) da się dojść
+    n=len(G)          # do drugiego elementu z tablicy sortowań, z drugiego do trzeciego itd.... jeśli na którymś odcinku się
+    def DFS_Visit(G,vertex): # zatrzymamy Graf nie ma cyklu Hamiltona
         VISITED[vertex]=True
         for i in range(len(G[vertex])):
             vertex2=G[vertex][i]
