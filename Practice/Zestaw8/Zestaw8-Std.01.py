@@ -1,9 +1,9 @@
 # Sprawdzanie czy graf jest dwudzielny
 from collections import deque
 
-def Dwudzielny(GRAPH):     # ALgorytm BFS reprezentacja listowa złożoność(V+E). Idziemy BFSem i kolorujemy krawędzie na dwa kolory
-    Q=deque([])            # jeśli da się tak pokolorować graf aby 
-    n=len(GRAPH)
+def Dwudzielny(GRAPH):     # ALgorytm BFS reprezentacja listowa złożoność(V+E). Idziemy BFSem i oznaczamy wierzchołki dwoma liczbami
+    Q=deque([])            # (jeśli wierzchołek ma wartość 0 to wszystkie jego dzieci muszą mieć wartość 1), jeśli da się tak oznaczyć
+    n=len(GRAPH)           # graf aby żadni sąsiedzi nie mieli przypisanego tego samego nr to jest dwudzielny
     VISITED=[False for _ in range(n)]
     PARENT=[None for _ in range(n)]
     COLORS=[None for _ in range(n)]
