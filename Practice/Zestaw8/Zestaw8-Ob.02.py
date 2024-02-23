@@ -4,9 +4,9 @@ graf reprezentowany jest przez macierz sasiedztwa A."""
 
 from collections import deque
 
-def Cycle4(GRAPH):
-    n=len(GRAPH)
-    LIST=[[] for _ in range(n)]
+def Cycle4(GRAPH):   # Algorytm O(V^2), zamieniamy reprezentacje na listę sąsiadów, tworzymy tablicę kwadratową neighbours
+    n=len(GRAPH)     # dla każdego wierzchołka przechodzimy po jego parach sąsiadów i wpisujemy w listę neighbour
+    LIST=[[] for _ in range(n)]  # jeśli powtarzają się sąsiedzi dla dwóch wierzchołków to mamy cykl na 4
     NEIGHBOURS=[[None for _ in range(n)]for _ in range(n)]
     for vertex in range(n):
         for j in range(n):
@@ -40,4 +40,3 @@ T=[[False,True,False,False,False,False,False],
    [False,False,False,False,False,True,False]]
 
 print(Cycle4(T))
-    
