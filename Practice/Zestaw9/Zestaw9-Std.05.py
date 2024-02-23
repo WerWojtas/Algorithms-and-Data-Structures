@@ -9,9 +9,9 @@ dostali się z A do B."""
 
 from collections import deque
 
-def przewoźnik(G,start,end):
-    n=len(G)
-    def DFS_Visit(G,vertex):
+def przewoźnik(G,start,end):     # Wykorzystanie DFS bez tablicy visited, szukamy tzw wąskiego gardła. Wykonujemy DFS i w tablicy
+    n=len(G)                     # LOW dla każdego wierzchołka zapisujemy najmniejszy na jego trasie odcinek, wchodzimy do kolejnego
+    def DFS_Visit(G,vertex):     # wierzchołka tylko wtedy gdy możemy zwiększyć jego minimalny odcinek na trasie
         for i in range(len(G[vertex])):
             edge=G[vertex][i]
             vertex2=edge[0]
