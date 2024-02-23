@@ -3,8 +3,8 @@
 x i y sprawdza, czy istnieje ścieżka z x do y, w której przechodzimy po krawędziach o coraz mniejszych wagach.
 """
 
-def DFS(G,start,end):     
-    n=len(G)
+def DFS(G,start,end):     # Wykorzystanie algorytmu DFS bez tablicy visited, wchodzimy do wierzchołka tylko wtedy gdy krawędź wejścia
+    n=len(G)              # jest mniejsza niż krawędź przyjścia
     flag=0
     def DFS_Visit(G,u):
         nonlocal end,flag
