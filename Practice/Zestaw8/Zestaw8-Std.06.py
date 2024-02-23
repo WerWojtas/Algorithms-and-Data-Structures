@@ -7,10 +7,10 @@ z zadanego punktu x ∈ V do zadanego punktu y ∈ V w taki sposób, żeby samol
 Algorytm powinien być poprawny i możliwie jak najszybszy. Proszę oszacować jego złożoność czasową."""
 
 
-def DFS(G,start,end,t):     
-    n=len(G)
-    PATH=[]
-    def DFS_Visit(G,u,height_start,dist):
+def DFS(G,start,end,t):     # Rozwiązanie w którym nie dostajemy pułapu samolotu, pułap wyznaczany jest jako przedział możliwych pułapów
+    n=len(G)                # przy każdej krawędzi wychodzącej ze start. Wykorzystuje algorytm DFS bez tablicy visited, wchodzę do
+    PATH=[]                 # wierzchołków tylko jeśli pułap na to pozwala - jako kolejny pułap biorę część wspólną pułapu wejściowego
+    def DFS_Visit(G,u,height_start,dist):     # i wyjściowego. Jeśli algorytm znajdzie wierzchołek końcowy przelot jest możliwy
         nonlocal end,height_end,flag,dista
         if flag==1:
             return True
