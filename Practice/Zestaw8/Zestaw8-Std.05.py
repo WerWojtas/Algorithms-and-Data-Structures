@@ -6,8 +6,9 @@ opłat. W ogólności graf G jest skierowany, ale można najpierw wskazać algor
 
 
 
-def DFS(G,start,end):     
-    n=len(G)
+
+def DFS(G,start,end):     # Wykorzystujemy algorytm DFS bez visited - wchodzimy do wierzchołka tylko wtedy gdy możemy zmniejszyć koszt
+    n=len(G)              # podróży (tablica PAYMENT), po wykonaniu DFS PAYMENT przy end będzie minimalny
     def DFS_Visit(G,u):
         nonlocal end
         for i in range(len(G[u])):
@@ -17,9 +18,12 @@ def DFS(G,start,end):
             print(u,vertex,cost)
             print(PAYMENT)
             if PAYMENT[vertex]>PAYMENT[u]+cost:
-                PAYMENT[vertex]=PAYMENT[u]+cost
-                DFS_Visit(G,vertex)
-  
+                if vertex==end:
+                    PAYMENT[end]=PAYMENT[u]+cost
+                else:
+                    PAYMENT[vertex]=PAYMENT[u]+cost
+                    DFS_Visit(G,vertex)
+    
     PAYMENT=[10**10 for _ in range(n)]
 
     PAYMENT[start]=0
@@ -42,7 +46,6 @@ T=[[(1,0)],
    [(9,0),(8,1)]]
 
 DFS(T,0,10)
-
 
 
     
